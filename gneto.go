@@ -48,6 +48,7 @@ var optPort string
 var optRobots string
 var optTextOnly bool
 var optTrust bool
+var i2pOnly bool
 var muServerCerts sync.RWMutex
 var serverCerts []serverCertificate
 var serverCertsChanged bool
@@ -162,6 +163,7 @@ func init() {
 	flag.StringVar(&optRobots, "robots", "./web/robots.txt", "path to robots.txt file")
 	flag.BoolVar(&optTextOnly, "textonly", false, "refuse to proxy non-text file types")
 	flag.BoolVar(&optTrust, "trust", false, "don't warn about TLS certificate changes for visited Gemini sites")
+	flag.BoolVar(&i2pOnly, "i2ponly", false, "don't allow the client to connect to any non-i2p sites")
 	flag.Parse()
 
 	if optAddr != "127.0.0.1" && (optHours != 0 || envPassword == "") {

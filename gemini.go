@@ -229,6 +229,9 @@ func proxyGemini(w http.ResponseWriter, r *http.Request, u *url.URL) (*url.URL, 
 			return u, fmt.Errorf("proxyGemini: I2P Dial error to %s: %v", u.String(), err)
 		}
 	} else {
+		if i2pOnly {
+			return u, fmt.Errorf("proxyGemini: Blocking request due to anonymity requirements %s: ", u.String())
+		}
 		conn, err = tls.Dial("tcp", u.Hostname()+":"+port, tc)
 		if err != nil {
 			return u, fmt.Errorf("proxyGemini: tls.Dial error to %s: %v", u.String(), err)
