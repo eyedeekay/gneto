@@ -12,11 +12,14 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"net"
 	"net/http"
 	"net/url"
 	"os"
 	"strings"
 	"time"
+
+	"github.com/eyedeekay/goSam"
 )
 
 var htmlEscaper = strings.NewReplacer(
@@ -214,14 +217,28 @@ func proxyGemini(w http.ResponseWriter, r *http.Request, u *url.URL) (*url.URL, 
 			MinVersion:         tls.VersionTLS12,
 		}
 	}
-	conn, err := tls.Dial("tcp", u.Hostname()+":"+port, tc)
-	if err != nil {
-		return u, fmt.Errorf("proxyGemini: tls.Dial error to %s: %v", u.String(), err)
+	var conn net.Conn
+
+	if strings.HasSuffix(u.Hostname(), ".i2p") {
+		GSC, err := goSam.NewDefaultClient()
+		if err != nil {
+			return u, fmt.Errorf("proxyGemini: I2P Client error to %s: %v", u.String(), err)
+		}
+		conn, err = GSC.Dial("tcp", u.Hostname()+":"+port)
+		if err != nil {
+			return u, fmt.Errorf("proxyGemini: I2P Dial error to %s: %v", u.String(), err)
+		}
+	} else {
+		conn, err = tls.Dial("tcp", u.Hostname()+":"+port, tc)
+		if err != nil {
+			return u, fmt.Errorf("proxyGemini: tls.Dial error to %s: %v", u.String(), err)
+		}
 	}
 	defer conn.Close()
 
-	warning = checkServerCert(u, conn)
-
+	if !strings.HasSuffix(u.Hostname(), ".i2p") {
+		warning = checkServerCert(u, conn.(*tls.Conn))
+	}
 	// Split the URL to avoid sending the fragment, if any, to the server.
 	fmt.Fprintf(conn, strings.SplitN(u.String(), "#", 2)[0]+"\r\n")
 
