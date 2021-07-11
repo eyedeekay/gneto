@@ -29,6 +29,8 @@ var htmlEscaper = strings.NewReplacer(
 	`"`, "&#34;",
 )
 
+var GSC *goSam.Client
+
 // geminiQueryEscape returns a URL query string with "+" replaced by "%2O",
 // as requred in secion 1.2 Gemini URI scheme of the Gemini specification.
 func geminiQueryEscape(q string) string {
@@ -220,9 +222,11 @@ func proxyGemini(w http.ResponseWriter, r *http.Request, u *url.URL) (*url.URL, 
 	var conn net.Conn
 
 	if strings.HasSuffix(u.Hostname(), ".i2p") {
-		GSC, err := goSam.NewDefaultClient()
-		if err != nil {
-			return u, fmt.Errorf("proxyGemini: I2P Client error to %s: %v", u.String(), err)
+		if GSC == nil {
+			GSC, err = goSam.NewDefaultClient()
+			if err != nil {
+				return u, fmt.Errorf("proxyGemini: I2P Client error to %s: %v", u.String(), err)
+			}
 		}
 		conn, err = GSC.Dial("tcp", u.Hostname()+":"+port)
 		if err != nil {
