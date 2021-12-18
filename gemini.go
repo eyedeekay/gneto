@@ -223,10 +223,14 @@ func proxyGemini(w http.ResponseWriter, r *http.Request, u *url.URL) (*url.URL, 
 
 	if strings.HasSuffix(u.Hostname(), ".i2p") {
 		if GSC == nil {
-			GSC, err = goSam.NewDefaultClient()
+			GSC, err = goSam.NewClientFromOptions(
+				goSam.SetCloseIdle(false),
+				goSam.SetDebug(true),
+			)
 			if err != nil {
 				return u, fmt.Errorf("proxyGemini: I2P Client error to %s: %v", u.String(), err)
 			}
+			//defer GSC.Close()
 		}
 		conn, err = GSC.Dial("tcp", u.Hostname()+":"+port)
 		if err != nil {
