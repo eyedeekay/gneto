@@ -167,6 +167,8 @@ func geminiToHTML(w http.ResponseWriter, u *url.URL, rd *bufio.Reader, td templa
 	return err
 }
 
+var conn net.Conn
+
 // proxyGemini finds the Gemini content at u.
 func proxyGemini(w http.ResponseWriter, r *http.Request, u *url.URL) (*url.URL, error) {
 	var err error
@@ -219,7 +221,6 @@ func proxyGemini(w http.ResponseWriter, r *http.Request, u *url.URL) (*url.URL, 
 			MinVersion:         tls.VersionTLS12,
 		}
 	}
-	var conn net.Conn
 
 	if strings.HasSuffix(u.Hostname(), ".i2p") {
 		if GSC == nil {
@@ -245,7 +246,7 @@ func proxyGemini(w http.ResponseWriter, r *http.Request, u *url.URL) (*url.URL, 
 			return u, fmt.Errorf("proxyGemini: tls.Dial error to %s: %v", u.String(), err)
 		}
 	}
-	defer conn.Close()
+	//defer conn.Close()
 
 	if !strings.HasSuffix(u.Hostname(), ".i2p") {
 		warning = checkServerCert(u, conn.(*tls.Conn))
