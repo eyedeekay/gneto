@@ -3,6 +3,7 @@ CGO_ENABLED=0
 export CGO_ENABLED=0
 
 PORT=7678
+RESDIR=conf
 
 GOOS?=$(shell uname -s | tr A-Z a-z)
 GOARCH?="amd64"
@@ -38,7 +39,7 @@ build: dep binary
 p: dep binary su3
 
 clean:
-	rm -f $(BINARY)-plugin plugin $(BINARY)-*zip -r $(BINARY)-$(GOOS)-$(GOARCH) $(BINARY)-$(GOOS)-$(GOARCH).exe tmp tor-browser/torbrowser-*.* $(BINARY) $(BINARY).exe
+	rm -f $(BINARY)-plugin plugin $(BINARY)-*zip -r $(BINARY)-$(GOOS)-$(GOARCH) $(BINARY)-$(GOOS)-$(GOARCH).exe tmp $(RESDIR)/www $(BINARY) $(BINARY).exe
 	rm -f *.su3 *.zip $(BINARY)-$(GOOS)-$(GOARCH) $(BINARY)-*
 	git clean -df
 
@@ -62,12 +63,13 @@ bsd:
 #	GOOS=openbsd GOARCH=amd64 make build su3
 
 dep:
-	cp "$(HOME)/Workspace/GIT_WORK/i2p.i2p/build/shellservice.jar" tor-browser/lib/shellservice.jar -v
+	mkdir -p $(RESDIR)/lib
+	cp "$(HOME)/Workspace/GIT_WORK/i2p.i2p/build/shellservice.jar" $(RESDIR)/lib/shellservice.jar -v
 
 res:
-	rm -rf conf
-	mkdir -p conf
-	cp -rv web conf/web
+	rm -rf $(RESDIR)
+	mkdir -p $(RESDIR)
+	cp -rv web $(RESDIR)/web
 
 su3: res
 	i2p.plugin.native -name=$(BINARY) \
@@ -86,7 +88,7 @@ su3: res
 		-website="http://idk.i2p/$(BINARY)/" \
 		-command="$(BINARY)-$(GOOS)-$(GOARCH)" \
 		-license=MIT \
-		-res=conf/
+		-res=$(RESDIR)/
 	unzip -o $(BINARY)-$(GOOS)-$(GOARCH).zip -d $(BINARY)-$(GOOS)-$(GOARCH)-zip
 
 sum:
