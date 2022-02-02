@@ -1,4 +1,4 @@
-VERSION=0.0.3
+VERSION=0.0.1
 CGO_ENABLED=0
 export CGO_ENABLED=0
 
@@ -62,7 +62,12 @@ bsd:
 dep:
 	cp "$(HOME)/Workspace/GIT_WORK/i2p.i2p/build/shellservice.jar" tor-browser/lib/shellservice.jar -v
 
-su3:
+res:
+	rm -rf conf
+	mkdir -p conf
+	cp -rv web conf/web
+
+su3: res
 	i2p.plugin.native -name=$(BINARY) \
 		-signer=$(SIGNER) \
 		-version "$(VERSION)" \
@@ -79,7 +84,7 @@ su3:
 		-website="http://idk.i2p/$(BINARY)/" \
 		-command="$(BINARY)-$(GOOS)-$(GOARCH)" \
 		-license=MIT \
-		-res=tor-browser/
+		-res=conf/
 	unzip -o $(BINARY)-$(GOOS)-$(GOARCH).zip -d $(BINARY)-$(GOOS)-$(GOARCH)-zip
 
 sum:
