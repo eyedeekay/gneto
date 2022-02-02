@@ -12,7 +12,7 @@ ARG=-v -tags netgo -ldflags '-w -extldflags "-static"'
 
 BINARY=gneto
 SIGNER=hankhill19580@gmail.com
-CONSOLEPOSTNAME=Tor Binary Manager
+CONSOLEPOSTNAME=Gopher-Like Networking
 USER_GH=eyedeekay
 PLUGIN=$(HOME)/.i2p/plugins/$(BINARY)-$(GOOS)-$(GOARCH)
 
@@ -24,15 +24,13 @@ binary:
 install-binary: binary
 	cp -v $(BINARY)-$(GOOS)-$(GOARCH) $(PLUGIN)/lib
 
+plugin-install:
+	make p; true
+	mkdir -p $(PLUGIN)
+	cp -vr plugin/* $(PLUGIN)
+
 install:
-	mkdir -p /var/lib/i2pbrowser/icons
-	install -m755 -v $(BINARY)-$(GOOS)-$(GOARCH) $(PREFIX)/bin/$(BINARY)-$(GOOS)-$(GOARCH)
-	ln -sf $(PREFIX)/bin/$(BINARY)-$(GOOS)-$(GOARCH) $(PREFIX)/bin/i2pbrowser
-	ln -sf $(PREFIX)/bin/$(BINARY)-$(GOOS)-$(GOARCH) $(PREFIX)/bin/torbrowser
-	install i2ptorbrowser.desktop /usr/share/applications/i2ptorbrowser.desktop
-	install torbrowser.desktop /usr/share/applications/torbrowser.desktop
-	install garliconion.png /var/lib/i2pbrowser/icons/garliconion.png
-	install onion.png /var/lib/i2pbrowser/icons/onion.png
+	install -m755 gneto $(PREFIX)/bin/gneto
 
 build: dep binary
 	

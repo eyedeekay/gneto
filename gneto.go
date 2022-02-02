@@ -159,7 +159,7 @@ func init() {
 	flag.StringVar(&optKeyFile, "key", "", "TLS key file for web interface")
 	flag.StringVar(&optLang, "lang", "en-US", "RFC4646 language for pages that do not supply one")
 	flag.IntVar(&maxRedirects, "r", 5, "maximum redirects to follow")
-	flag.StringVar(&optPort, "port", "7678", "port on which to serve web interface")
+	flag.StringVar(&optPort, "port", "7679", "port on which to serve web interface")
 	flag.StringVar(&optRobots, "robots", "./web/robots.txt", "path to robots.txt file")
 	flag.BoolVar(&optTextOnly, "textonly", false, "refuse to proxy non-text file types")
 	flag.BoolVar(&optTrust, "trust", false, "don't warn about TLS certificate changes for visited Gemini sites")
