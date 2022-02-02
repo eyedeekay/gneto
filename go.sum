@@ -7,6 +7,8 @@ github.com/eyedeekay/goSam v0.32.50 h1:8iHMWv5MYSqViixypovmzFQCE//hLzm0cdSKgYbN+
 github.com/eyedeekay/goSam v0.32.50/go.mod h1:UgJnih/LpotwKriwVPOEa6yPDM2NDdVrKfLtS5DOLPE=
 github.com/eyedeekay/goSam v0.32.53 h1:oUivI6MOOQMtdXlXxauGUgGy/ueNr3hdtkTwQhHQ83c=
 github.com/eyedeekay/goSam v0.32.53/go.mod h1:UgJnih/LpotwKriwVPOEa6yPDM2NDdVrKfLtS5DOLPE=
+github.com/eyedeekay/portsleep v0.0.0-20220202215428-b00cabad87cb h1:DPF4ZxxbVTnESU0yimO86QWJZJU89f9IvGELTaLs08s=
+github.com/eyedeekay/portsleep v0.0.0-20220202215428-b00cabad87cb/go.mod h1:ExrP0nS/TCyzQYNiUzcsU/BQ8+08mDp27yj4fZ/nYCg=
 github.com/eyedeekay/sam3 v0.32.32 h1:9Ea1Ere5O8Clx8zYxKnvhrWy7R96Q4FvxlPskYf8VW0=
 github.com/eyedeekay/sam3 v0.32.32/go.mod h1:qRA9KIIVxbrHlkj+ZB+OoxFGFgdKeGp1vSgPw26eOVU=
 github.com/getlantern/context v0.0.0-20190109183933-c447772a6520/go.mod h1:L+mq6/vvYHKjCX2oez0CgEAJmbq1fbb/oNJIWQkBybY=
