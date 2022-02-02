@@ -135,3 +135,6 @@ Copyright
 Gneto copyright 2020 Paul Gorman.
 
 Licensed under the GPL. See LICENSE.txt for details.
+
+
+<a href="https://www.flaticon.com/free-icons/judo" title="judo icons">Judo icons created by Freepik - Flaticon</a>
