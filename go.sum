@@ -1,6 +1,10 @@
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/eyedeekay/goSam v0.32.4 h1:KmmdUEgnOlT2eKo2Z9iH0R7H9R5HCQk9LZQQQuF9U+U=
 github.com/eyedeekay/goSam v0.32.4/go.mod h1:UgJnih/LpotwKriwVPOEa6yPDM2NDdVrKfLtS5DOLPE=
+github.com/eyedeekay/goSam v0.32.30 h1:mMlZNE2oISdjjjpgfN17W56tn9F8rD/Jc2tsjTDDFYg=
+github.com/eyedeekay/goSam v0.32.30/go.mod h1:UgJnih/LpotwKriwVPOEa6yPDM2NDdVrKfLtS5DOLPE=
+github.com/eyedeekay/goSam v0.32.50 h1:8iHMWv5MYSqViixypovmzFQCE//hLzm0cdSKgYbN+6o=
+github.com/eyedeekay/goSam v0.32.50/go.mod h1:UgJnih/LpotwKriwVPOEa6yPDM2NDdVrKfLtS5DOLPE=
 github.com/eyedeekay/sam3 v0.32.32 h1:9Ea1Ere5O8Clx8zYxKnvhrWy7R96Q4FvxlPskYf8VW0=
 github.com/eyedeekay/sam3 v0.32.32/go.mod h1:qRA9KIIVxbrHlkj+ZB+OoxFGFgdKeGp1vSgPw26eOVU=
 github.com/getlantern/context v0.0.0-20190109183933-c447772a6520/go.mod h1:L+mq6/vvYHKjCX2oez0CgEAJmbq1fbb/oNJIWQkBybY=
