@@ -60,7 +60,7 @@ bsd:
 #	GOOS=freebsd GOARCH=amd64 make build su3
 #	GOOS=openbsd GOARCH=amd64 make build su3
 
-dep:
+dep: res
 	mkdir -p $(RESDIR)/lib
 	cp "$(HOME)/Workspace/GIT_WORK/i2p.i2p/build/shellservice.jar" $(RESDIR)/lib/shellservice.jar -v
 
@@ -69,8 +69,8 @@ res:
 	mkdir -p $(RESDIR)
 	cp -rv web $(RESDIR)/web
 
-su3: res
-	i2p.plugin.native -name=$(BINARY) \
+su3: dep
+	i2p.plugin.native -name=$(BINARY)-$(GOOS)-$(GOARCH) \
 		-signer=$(SIGNER) \
 		-version "$(VERSION)" \
 		-author=$(SIGNER) \
