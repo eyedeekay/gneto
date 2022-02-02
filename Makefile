@@ -2,6 +2,8 @@ VERSION=0.0.1
 CGO_ENABLED=0
 export CGO_ENABLED=0
 
+PORT=7678
+
 GOOS?=$(shell uname -s | tr A-Z a-z)
 GOARCH?="amd64"
 
@@ -79,7 +81,7 @@ su3: res
 		-desc="`cat desc`" \
 		-exename=$(BINARY)-$(GOOS)-$(GOARCH) \
 		-icondata=icon/icon.png \
-		-consoleurl="http://127.0.0.1:7695" \
+		-consoleurl="http://127.0.0.1:$(PORT)" \
 		-updateurl="http://idk.i2p/$(BINARY)/$(BINARY)-$(GOOS)-$(GOARCH).su3" \
 		-website="http://idk.i2p/$(BINARY)/" \
 		-command="$(BINARY)-$(GOOS)-$(GOARCH)" \
