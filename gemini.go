@@ -225,6 +225,7 @@ func proxyGemini(w http.ResponseWriter, r *http.Request, u *url.URL) (*url.URL, 
 
 	if strings.HasSuffix(u.Hostname(), ".i2p") {
 		if GSC == nil {
+			portsleep.LOOP_FOREVER = true
 			portsleep.SleepLoop(7656)
 			GSC, err = goSam.NewClientFromOptions(
 				goSam.SetCloseIdle(false),
