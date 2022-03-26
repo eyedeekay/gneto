@@ -62,7 +62,7 @@ bsd:
 
 dep: res
 	mkdir -p $(RESDIR)/lib
-	cp "$(HOME)/Workspace/GIT_WORK/i2p.i2p/build/shellservice.jar" $(RESDIR)/lib/shellservice.jar -v
+#	cp "$(HOME)/build/shellservice.jar" $(RESDIR)/lib/shellservice.jar -v
 
 res:
 	rm -rf $(RESDIR)
